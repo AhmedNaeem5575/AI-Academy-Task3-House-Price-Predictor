@@ -11,14 +11,14 @@ with open("logistic_model.pkl", "rb") as f:
     w_log, b_log = pickle.load(f)
 
 # User input
-income = float(input("Enter median income (e.g., 3.5): "))
+income = float(input("Enter median income in unit 10 thousand dollars (e.g., 3.5 for 35000): "))
 
 # Normalize input (same method as training)
-income_norm = (income - 3.8706710029070246) / 1.8998217179455158  # hardcoded mean & std from training
+income_norm = (income - 3.8711616013311794) / 1.8992912493062482  # hardcoded mean & std from training
 
 # Predict house price
 price_pred = np.dot(income_norm, w_lin) + b_lin
-price_pred = price_pred * 115395.61587437352 + 206855.81690891474  # unnormalize prediction
+price_pred = price_pred * 115435.6670985836 + 206864.41315519012  # unnormalize prediction
 
 # Predict expensive or not
 z = np.dot(income_norm, w_log) + b_log
